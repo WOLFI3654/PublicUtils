@@ -37,5 +37,5 @@ public class NoteBlockPlayerMain {
         return b;
     }
 
-   
+
 }
