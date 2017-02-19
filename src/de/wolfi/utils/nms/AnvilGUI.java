@@ -24,7 +24,7 @@ import net.minecraft.server.v1_8_R3.EntityPlayer;
 import net.minecraft.server.v1_8_R3.PacketPlayOutOpenWindow;
 
 /**
-* Created by chasechocolate.
+* Created by chasechocolate. MUH
 */
 public class AnvilGUI {
     private class AnvilContainer extends ContainerAnvil {
