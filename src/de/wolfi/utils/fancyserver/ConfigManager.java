@@ -25,13 +25,7 @@ public class ConfigManager {
 		if (s != null) {
 			return s;
 		} else {
-			return new Serializable() {
-
-				/**
-				 * 
-				 */
-				private static final long serialVersionUID = 1L;
-			};
+			return null;
 		}
 
 	}

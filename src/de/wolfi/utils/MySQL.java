@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 
+import javax.annotation.Nullable;
+
 import org.bukkit.Bukkit;
 
 import java.sql.Connection;
@@ -70,6 +72,7 @@ public class MySQL {
 				e.printStackTrace();
 			}
 	}
+	@Nullable
 	 public ResultSet querySQL(String query) {
 	        Connection c = preCheckConnection();
 
@@ -79,8 +82,9 @@ public class MySQL {
 	            s = c.createStatement();
 	        } catch (SQLException e1) {
 	            e1.printStackTrace();
+	            return null;
 	        }
-
+	        
 	        ResultSet ret = null;
 
 	        try {

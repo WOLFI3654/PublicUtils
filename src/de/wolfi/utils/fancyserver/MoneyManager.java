@@ -23,7 +23,7 @@ public class MoneyManager {
 	public void load() {
 		Object o = cfg.get("MoneyBank");
 		if (o instanceof ArrayList<?>) {
-			accounts = (ArrayList<Account>) o;
+			MoneyManager.accounts = (ArrayList<Account>) o;
 		}
 		
 	}

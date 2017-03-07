@@ -330,7 +330,7 @@ public class ObjectiveTitleAPI {
 						.getConstructor(ObjectiveTitleAPI.packetActions, ObjectiveTitleAPI.chatBaseComponent)
 						.newInstance(actions[0], serialized);
 				sendPacket.invoke(connection, packet);
-				if (this.subtitle != "") {
+				if (!(this.subtitle).equals("")) {
 					// Send subtitle if present
 					serialized = ObjectiveTitleAPI.nmsChatSerializer.getConstructor(String.class)
 							.newInstance(ChatColor.translateAlternateColorCodes('&', this.subtitle));

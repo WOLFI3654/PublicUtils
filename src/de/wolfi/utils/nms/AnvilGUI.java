@@ -136,7 +136,7 @@ public class AnvilGUI {
         this.handler = handl;
  
         this.listener = new Listener(){
-            @EventHandler
+        	@EventHandler
             public void onInventoryClick(InventoryClickEvent event){
                 if(event.getWhoClicked() instanceof Player){
                     Player clicker = (Player) event.getWhoClicked();
