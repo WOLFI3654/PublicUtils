@@ -202,5 +202,9 @@ public class ItemBuilder {
 		this.addLore(ItemBuilder.trollLore);
 		return this;
 	}
+	
+	public static ItemBuilder copyFromItemstack(ItemStack i){
+		return new ItemBuilder(i.clone());
+	}
 
 }
