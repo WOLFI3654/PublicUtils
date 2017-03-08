@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.Color;
+import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.enchantments.EnchantmentTarget;
@@ -12,6 +13,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.material.Colorable;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -130,6 +132,14 @@ public class ItemBuilder {
 	}
 	
 
+	public ItemBuilder dye(DyeColor d) {
+		ItemMeta meta = this.stack.getItemMeta();
+		if (meta instanceof Colorable) {
+			((Colorable) meta).setColor(d);
+		}
+		this.stack.setItemMeta(meta);
+		return this;
+	}
 	public ItemBuilder potionColor(PotionEffectType type){
 		if(this.stack.getItemMeta() instanceof PotionMeta){
 			PotionMeta meta = (PotionMeta) this.stack.getItemMeta();	
