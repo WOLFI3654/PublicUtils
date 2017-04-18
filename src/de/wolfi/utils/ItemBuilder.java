@@ -30,37 +30,31 @@ public class ItemBuilder {
 
 		@Override
 		public boolean canEnchantItem(ItemStack paramItemStack) {
-			// TODO Auto-generated method stub
 			return false;
 		}
 
 		@Override
 		public boolean conflictsWith(Enchantment paramEnchantment) {
-			// TODO Auto-generated method stub
 			return false;
 		}
 
 		@Override
 		public EnchantmentTarget getItemTarget() {
-			// TODO Auto-generated method stub
 			return EnchantmentTarget.ALL;
 		}
 
 		@Override
 		public int getMaxLevel() {
-			// TODO Auto-generated method stub
-			return 2;
+			return 100;
 		}
 
 		@Override
 		public String getName() {
-			// TODO Auto-generated method stub
 			return this.name;
 		}
 
 		@Override
 		public int getStartLevel() {
-			// TODO Auto-generated method stub
 			return 1;
 		}
 
