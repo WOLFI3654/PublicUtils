@@ -64,6 +64,7 @@ public class InventorySelector implements InventoryHolder, Listener {
 
 	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	public void onClick(InventoryClickEvent e) {
+		if(e.getInventory().getHolder() == null) return;
 		if (e.getInventory().getHolder().equals(this)) {
 			e.setCancelled(true);
 			if (e.getCurrentItem() != null) {
