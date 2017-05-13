@@ -3,9 +3,11 @@ package de.wolfi.utils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
@@ -46,7 +48,7 @@ public class InventorySelector implements InventoryHolder, Listener {
 		this.inv.setItem(row, InventorySelector.random);
 		row += 2;
 		this.inv.setItem(row, this.selected);
-		row += 2;
+		row += 4;
 		this.inv.setItem(row, InventorySelector.cancel);
 
 	}
@@ -97,5 +99,12 @@ public class InventorySelector implements InventoryHolder, Listener {
 	private void setSelected(ItemStack item) {
 		this.selected = item;
 		this.inv.setItem(9*3+4, this.selected);
+	}
+	
+	public void destroy(){
+		HandlerList.unregisterAll(this);
+		for(HumanEntity e : this.inv.getViewers()){
+			e.closeInventory();
+		}
 	}
 }
