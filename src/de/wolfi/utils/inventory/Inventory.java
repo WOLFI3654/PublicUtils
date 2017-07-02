@@ -34,16 +34,23 @@ public abstract class Inventory implements InventoryHolder, Listener {
 	protected ItemStack selected = new ItemStack(Material.BARRIER);
 
 	private Callback<Boolean, ItemStack> callback = (i) -> false;
+	private final boolean autoDestroy;
 
 	protected abstract boolean isInternSlot(int slot);
 
 	protected abstract void fillIntern();
 
 	protected abstract void slotClicked(ItemStack item, int slot);
-
+	
 	protected Inventory(String title, int selectedSlot) {
+		this(title,selectedSlot,false);
+
+	}
+	
+	protected Inventory(String title, int selectedSlot, boolean autoDestroy) {
 		this.inv = Bukkit.createInventory(this, 9 * 5, title);
 		this.selectedSlot = selectedSlot;
+		this.autoDestroy = autoDestroy;
 		this.fillIntern();
 		Bukkit.getPluginManager().registerEvents(this, UtilRegistry.getPlugin());
 
@@ -62,7 +69,7 @@ public abstract class Inventory implements InventoryHolder, Listener {
 						e.getWhoClicked().closeInventory();
 						if (!this.callback.call(this.selected))
 							e.getWhoClicked().openInventory(this.inv);
-						else
+						else if(this.autoDestroy)
 							this.destroy();
 					}
 				} else
