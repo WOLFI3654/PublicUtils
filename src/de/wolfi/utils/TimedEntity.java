@@ -14,6 +14,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Wolf;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.Colorable;
+import org.bukkit.metadata.MetadataValue;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.util.Vector;
 
@@ -34,15 +35,19 @@ public class TimedEntity {
 			Bukkit.getScheduler().runTaskLater(UtilRegistry.getPlugin(), new Runnable() {
 				@Override
 				public void run() {
-					if (TimedEntity.this.en.isValid()) {
-						TimedEntity.this.en.eject();
-						TimedEntity.this.en.remove();
-						for (Runable<TimedEntity> run : TimedEntity.this.tasks) {
-							run.run();
-						}
-					}
+					runTask();
 				}
 			}, time);
+	}
+	
+	private void runTask(){
+		if (TimedEntity.this.en.isValid()) {
+			TimedEntity.this.en.eject();
+			TimedEntity.this.en.remove();
+			for (Runable<TimedEntity> run : TimedEntity.this.tasks) {
+				run.run();
+			}
+		}
 	}
 
 	private Entity a() {
@@ -157,6 +162,15 @@ public class TimedEntity {
 	public TimedEntity vector(Vector v) {
 		this.en.setVelocity(v);
 		return this;
+	}
+	
+	public TimedEntity metadata(String s, MetadataValue v){
+		this.en.setMetadata(s, v);
+		return this;
+	}
+	
+	public void remove(){
+		runTask();
 	}
 
 }
