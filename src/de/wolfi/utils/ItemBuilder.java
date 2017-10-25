@@ -3,6 +3,7 @@ package de.wolfi.utils;
 import java.util.Arrays;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.DyeColor;
 import org.bukkit.Material;
@@ -85,27 +86,35 @@ public class ItemBuilder {
 	}
 
 	public static boolean isSimilar(ItemStack is1, ItemStack is2) {
-		if(is1.getType() != Material.SKULL_ITEM) return is1.isSimilar(is2);
+		if (is1.getType() != Material.SKULL_ITEM)
+			return is1.isSimilar(is2);
+
 		if (is1.getType() != is2.getType())
 			return false;
+
 		if (is1.getDurability() != is2.getDurability())
 			return false;
+
 		if (is1.hasItemMeta() != is2.hasItemMeta())
 			return false;
+
 		if (is1.hasItemMeta()) {
 			SkullMeta im1 = (SkullMeta) is1.getItemMeta();
 			SkullMeta im2 = (SkullMeta) is2.getItemMeta();
 			if (!im1.getDisplayName().equals(im2.getDisplayName()))
 				return false;
+
 			if (im1.hasLore() != im2.hasLore())
 				return false;
+
 			if (im1.hasLore())
 				if (!im1.getLore().equals(im2.getLore()))
 					return false;
-			if (im1.getOwner() != im2.getOwner())
-				return false;
 
-		
+			if (!im1.getOwner().equals(im2.getOwner()))
+				return false;
+			Bukkit.broadcastMessage("1");
+
 		}
 		return true;
 	}
