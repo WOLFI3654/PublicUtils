@@ -84,6 +84,32 @@ public class ItemBuilder {
 		return builder;
 	}
 
+	public static boolean isSimilar(ItemStack is1, ItemStack is2) {
+		if(is1.getType() != Material.SKULL_ITEM) return is1.isSimilar(is2);
+		if (is1.getType() != is2.getType())
+			return false;
+		if (is1.getDurability() != is2.getDurability())
+			return false;
+		if (is1.hasItemMeta() != is2.hasItemMeta())
+			return false;
+		if (is1.hasItemMeta()) {
+			SkullMeta im1 = (SkullMeta) is1.getItemMeta();
+			SkullMeta im2 = (SkullMeta) is2.getItemMeta();
+			if (!im1.getDisplayName().equals(im2.getDisplayName()))
+				return false;
+			if (im1.hasLore() != im2.hasLore())
+				return false;
+			if (im1.hasLore())
+				if (!im1.getLore().equals(im2.getLore()))
+					return false;
+			if (im1.getOwner() != im2.getOwner())
+				return false;
+
+		
+		}
+		return true;
+	}
+
 	private Material m;
 
 	private ItemStack stack;
@@ -124,7 +150,6 @@ public class ItemBuilder {
 		this.stack.setItemMeta(meta);
 		return this;
 	}
-	
 
 	public ItemBuilder dye(DyeColor d) {
 		ItemMeta meta = this.stack.getItemMeta();
@@ -134,24 +159,25 @@ public class ItemBuilder {
 		this.stack.setItemMeta(meta);
 		return this;
 	}
-	public ItemBuilder potionColor(PotionEffectType type){
-		if(this.stack.getItemMeta() instanceof PotionMeta){
-			PotionMeta meta = (PotionMeta) this.stack.getItemMeta();	
+
+	public ItemBuilder potionColor(PotionEffectType type) {
+		if (this.stack.getItemMeta() instanceof PotionMeta) {
+			PotionMeta meta = (PotionMeta) this.stack.getItemMeta();
 			meta.setMainEffect(type);
 			this.stack.setItemMeta(meta);
 		}
 		return this;
 	}
 
-	public ItemBuilder potion(PotionEffectType type, int durability, int amp){
-		if(this.stack.getItemMeta() instanceof PotionMeta){
-			PotionMeta meta = (PotionMeta) this.stack.getItemMeta();	
+	public ItemBuilder potion(PotionEffectType type, int durability, int amp) {
+		if (this.stack.getItemMeta() instanceof PotionMeta) {
+			PotionMeta meta = (PotionMeta) this.stack.getItemMeta();
 			meta.addCustomEffect(new PotionEffect(type, durability, amp), false);
 			this.stack.setItemMeta(meta);
 		}
 		return this;
 	}
-	
+
 	public ItemBuilder enchant(Enchantment ench, int level) {
 		this.stack.addUnsafeEnchantment(ench, level);
 		return this;
@@ -196,8 +222,8 @@ public class ItemBuilder {
 		this.addLore(ItemBuilder.trollLore);
 		return this;
 	}
-	
-	public static ItemBuilder copyFromItemstack(ItemStack i){
+
+	public static ItemBuilder copyFromItemstack(ItemStack i) {
 		return new ItemBuilder(i.clone());
 	}
 
