@@ -7,8 +7,8 @@ import org.bukkit.entity.Player;
 
 public class SimpleLocationManager {
 
-	public static void teleportPlayer(Player player, LocPos pose){
-		player.teleport(fromString(pose.getFancyLocation()));
+	public static void teleportPlayer(Player player, String pose){
+		player.teleport(fromString(pose));
 	}
 	
 	public static Location fromString(String loc) {
