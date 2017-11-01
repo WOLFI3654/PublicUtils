@@ -33,6 +33,7 @@ public abstract class Inventory implements InventoryHolder, Listener {
 	private final int selectedSlot;
 	protected ItemStack selected = new ItemStack(Material.BARRIER);
 
+	private boolean cancelled = false;
 	private Callback<Boolean, ItemStack> callback = (i) -> false;
 	private final boolean autoDestroy;
 
@@ -65,7 +66,7 @@ public abstract class Inventory implements InventoryHolder, Listener {
 			if (e.getCurrentItem() != null) {
 				final ItemStack item = e.getCurrentItem();
 				if (this.isInternSlot(e.getSlot())) {
-					if (item.equals(Inventory.confirm)) {
+					if (item.equals(Inventory.confirm) || (this.cancelled = item.equals(Inventory.cancel))) {
 						e.getWhoClicked().closeInventory();
 						if (!this.callback.call(this.selected))
 							e.getWhoClicked().openInventory(this.inv);
@@ -79,6 +80,9 @@ public abstract class Inventory implements InventoryHolder, Listener {
 		}
 	}
 
+	public boolean isCancelled() {
+		return cancelled;
+	}
 	@Override
 	public final org.bukkit.inventory.Inventory getInventory() {
 		return this.inv;
