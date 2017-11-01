@@ -9,7 +9,7 @@ public class InventoryConfirmation extends Inventory {
 
 	private String msg;
 
-	protected InventoryConfirmation(String title) {
+	public InventoryConfirmation(String title) {
 		super("Bitte bestätigen...", 9*3+4, true);
 		this.msg = title;
 	}
