@@ -16,12 +16,24 @@ public class InventoryConfirmation extends Inventory {
 
 	@Override
 	protected boolean isInternSlot(int slot) {
-		return false;
+
+		return slot > 9 * 3;
 	}
 
 	@Override
 	protected void fillIntern() {
 		this.setSelected(new ItemBuilder(Material.PAPER).addLore(this.msg).setName("§cStimmst du zu?").build());
+		int row = 9 * 3;
+		while (row < 9 * 4) {
+			this.inv.setItem(row, Inventory.seperator);
+			row++;
+		}
+		this.inv.setItem(row, Inventory.confirm);
+		row += 2;
+		this.inv.setItem(row, Inventory.random);
+		row += 2;
+		row += 4;
+		this.inv.setItem(row, Inventory.cancel);
 		
 	}
 

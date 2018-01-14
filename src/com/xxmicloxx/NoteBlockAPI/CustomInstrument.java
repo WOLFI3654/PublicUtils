@@ -1,6 +1,7 @@
 package com.xxmicloxx.NoteBlockAPI;
 
 import org.bukkit.Sound;
+@SuppressWarnings("unused")
 
 public class CustomInstrument {
 	

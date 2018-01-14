@@ -23,7 +23,7 @@ public abstract class Inventory implements InventoryHolder, Listener {
 			.setName(ChatColor.RED + "Cancel").build();
 	protected static final ItemStack confirm = new ItemBuilder(Material.WOOL).setMeta((short) 5)
 			.setName(ChatColor.GREEN + "Confirm").build();
-	protected static final ItemStack random = new ItemBuilder(Material.PORTAL)
+	protected static final ItemStack random = new ItemBuilder(Material.ENDER_PORTAL_FRAME)
 			.setName(ChatColor.LIGHT_PURPLE + "Random").build();
 	protected static final ItemStack seperator = new ItemBuilder(Material.STAINED_GLASS_PANE).setMeta((short) 9)
 			.build();
