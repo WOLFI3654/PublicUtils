@@ -30,7 +30,7 @@ public class AnvilGUI {
     private class AnvilContainer extends ContainerAnvil {
         public AnvilContainer(EntityHuman entity){
             super(entity.inventory, entity.world,new BlockPosition(0, 0, 0), entity);
-            
+            checkReachable = false;
         }
  
         @Override

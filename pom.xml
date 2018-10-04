@@ -35,13 +35,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    <distributionManagement>
-        <snapshotRepository>
-            <id>teamcreate</id>
-            <name>teamcreate-depl</name>
-            <url>http://teamcreate.de:8081/nexus/content/repositories/snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
     <repositories>
         <repository>
             <id>sk89q-snapshots</id>
@@ -54,14 +47,6 @@
             </snapshots>
         </repository>
 
-        <repository>
-            <id>teamcreate</id>
-            <name>teamcreate</name>
-            <url>http://teamcreate.de:8081/nexus/content/repositories/snapshots/</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
         <repository>
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
